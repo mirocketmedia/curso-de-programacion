@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel o Tijera</title>
+    <script>
+        // partimos de que 1 es piedra, 2 es papel, 3 es tijera
+        // Creamos variables Jugador con valor 0 y pc con valor 2
+        let jugador = 0
+        let pc = 3
+        //Creamos función con prompt pidiendo que jugador elija jugada
+        jugador = prompt("Elige: 1 para piedra, 2 para papel, 3 para tijera")
+
+        //Ahora creamos la condicional del jugador, dandole a elegir entre 1, 2 o 3
+        //y colocando la alerta adecuada segun su elección "elegiste..."
+
+        if(jugador == 1) {
+          alert("Elegiste piedra 💎")
+        } else if (jugador == 2) {
+          alert("Elegiste papel 📃")
+        } else if (jugador == 3) {
+          alert("Elegiste tijera ✂️")
+        //coloco location. reload para recargar el prompt si se coloca
+        //un resultado diferente a 1, 2 o 3, o si no se coloca nada
+        } else {
+          location. reload() 
+        }
+
+        //Ahora creamos la condicional de pc, en caso de que haya elegido 1, 2 o 3
+        //y colocando la alerta adecuada la elección de pc colocada previamente "pc eligió..."
+
+        if(pc == 1) {
+          alert("PC eligió 💎")
+        } else if (pc == 2) {
+          alert("PC eligió 📃")
+        } else if (pc == 3) {
+          alert("PC eligió ✂️")
+        }
+        // COMBATE: Se crean condicionales con alert que dependan de la combinación de jugadas 
+        //entre jugador y pc
+        if (pc == jugador) {
+          alert("EMPATE")
+        } else if (jugador == 1 && pc == 3) { //el operador && indica las dos opciones 1-3 o 3-1
+          alert("GANASTE")
+        } else if (jugador == 2 && pc == 1) {
+          alert("GANASTE")
+        } else if (jugador == 3 && pc == 2) {
+          alert("GANASTE")
+        } else {
+          alert("DEBES ELEGIR 1, 2 0 3 PARA PODER JUGAR, INTENTALO DE NUEVO")
+        }
+      </script>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera</h1>
+</body>
+</html>
