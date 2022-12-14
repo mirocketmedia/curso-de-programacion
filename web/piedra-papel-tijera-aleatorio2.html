@@ -47,14 +47,22 @@
         //entre jugador y pc
         if (pc == jugador) {
           alert("EMPATE")
-        } else if (jugador == 1 && pc == 3) { //el operador && indica las dos opciones 1-3 o 3-1
+          //Con el operador && indicamos que si o si ese será el resultado
+          //y colocamos solo las opciones donde jugador gana, 
+          //con el else indicamos que si jugador no nada, entonces pierde
+          //además, coloque otro else if en el caso de que  el jugador
+          //coloque un numero superior a 3, con mlo cual no podrá jugar y
+          //deberá intentarlo de nuevo
+        } else if (jugador == 1 && pc == 3) { 
           alert("GANASTE")
         } else if (jugador == 2 && pc == 1) {
           alert("GANASTE")
         } else if (jugador == 3 && pc == 2) {
           alert("GANASTE")
+        } else if (jugador >3) {
+          alert('DEBES ELEGIR 1, 2 0 3 PARA PODER JUGAR, INTENTALO DE NUEVO')
         } else {
-          alert("DEBES ELEGIR 1, 2 0 3 PARA PODER JUGAR, INTENTALO DE NUEVO")
+          alert("PERDISTE")
         }
       </script>
 </head>
