@@ -34,7 +34,7 @@ function seleccionarMascotaJugador() {
         alert('DEBES SELECCIONAR UNA MASCOTA');
     } 
         
-    seleccionarMascotaEnemigo();
+    seleccionarMascotaEnemigo(lmml);
 
 }
 
