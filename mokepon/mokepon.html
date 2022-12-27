@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mokepon</title>
+    <link rel="stylesheet" href="./css/style.css">
     <script src="./js/mokepon.js"></script>
-
 </head>
 <body>
     <h1>MOKEPON 🔥 💧 🌎</h1>
 
     <section id="seleccionar-mascota">
-        <h2>Elige tu mascota:</h2> 
+        <h2>Elige tu Mascota:</h2> 
 
         <label for="hipodoge">Hipodoge</label>
         <input type="radio" name="mascota" id="hipodoge">
@@ -32,41 +32,31 @@
         <label for="pydos">Pydos</label>
         <input type="radio" name="mascota" id="pydos">
 
-        <!-- Hipodoge -> Agua
-        Capipepo -> Tierra
-        Ratigueya -> Fuego
-        Langostelvis -> Agua y Fuego
-        Tucapalma -> Agua y Tierra
-        Pydos -> Tierra y Fuego -->
-
-
-         <button id="boton-mascota">Seleccionar</button>
+         <button id="boton-mascota-jugador">Seleccionar</button>
+         <p>Tu mascota <span id="mascota-jugador"> </span> tiene <span>3</span> vidas</p>
+         <p>La mascota <span id="mascota-enemigo"> </span> del enemigo tiene <span>3</span> vidas</p>
     </section>
 
     <section id="seleccionar-ataque">
-        <h2>Elige tu ataque:</h2>
-
-        <p>Tu mascota<span id="mascota-jugador"></span> tiene <span>3</span> vidas</p>
-        <p>La mascota <span id="mascota-enemigo"></span> enemigo tiene <span>3</span> vidas</p>
-        
-        <p>
+        <h2>Elige tu Ataque:</h2>
+        <section>
         <button id="boton-fuego">Fuego 🔥</button>
         <button id="boton-agua">Agua 💧</button>
         <button id="boton-tierra">Tierra 🌎</button>
-        </p>
+        </section>
 
     </section>
 
     <section id="mensajes">
-        <p>Tu mascota atacó con Fuego, la mascota del enemigo atacó con Tierra- GANASTE🎉</p>
+        
     </section>
-    <section id="Reiniciar">
-        <button id="boton-reiniciar">Reiniciar</button>
+
+    <section id="reiniciar">
+        <button>Reiniciar</button>
     </section>
-    
 
 
-    
+
+
 </body>
-
 </html>
