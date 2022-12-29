@@ -2,6 +2,8 @@
 
 let ataqueJugador
 let ataqueEnemigo
+let vidasJugador = 3
+let vidasEnemigo = 3
 
 //FIN VARIABLES GLOBALES
 
@@ -11,6 +13,13 @@ let ataqueEnemigo
 
 
 function iniciarJuego() {
+
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+    sectionSeleccionarAtaque.style.display = 'none'
+    
+    let sectionReiniciar = document.getElementById("reiniciar")
+    sectionReiniciar.style.display = 'none'
+
     let botonMascotaJugador = document.getElementById('boton-mascota-jugador')
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
@@ -23,7 +32,9 @@ function iniciarJuego() {
     botonAgua.addEventListener('click',ataqueAgua)
     let botonTierra = document.getElementById('boton-tierra')
     botonTierra.addEventListener('click',ataqueTierra)
-
+    
+    let botonReiniciar = document.getElementById("reiniciar")
+    botonReiniciar.addEventListener('click',reiniciarJuego)
 
 }
 
@@ -46,6 +57,12 @@ function seleccionarMascotaJugador() {
 //CREAMOS VARIABLES DE CADA INPUT PARA USARLAS ENB LA CONDICINAL CON CHECKED
 //PARA DARLE MAS CLARIDAD AL CODIGO
 
+    let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
+    sectionSeleccionarMascota.style.display = 'none'
+    
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+    sectionSeleccionarAtaque.style.display = 'block'
+    
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
     let inputRatigueya = document.getElementById('ratigueya')
@@ -126,10 +143,12 @@ function ataqueTierra(){
 
 //CREAMOS FUNCIÓN ATAQUE ENEMIGO, JUSTO DESPUES DEL ATAQUE JUGADOR
 
+
+
 function ataqueAleatorioEnemigo() {
    let ataqueAleatorio = aleatorio(1,3)
    
-   if (ataqueAleatorio == 1) {
+   if(ataqueAleatorio == 1) {
     ataqueEnemigo = 'FUEGO'
    }else if (ataqueAleatorio == 2) {
     ataqueEnemigo = 'AGUA'
@@ -142,7 +161,11 @@ function ataqueAleatorioEnemigo() {
 
 }
 
+//FUNCIÓN COMBATE
 function combate() {
+
+    let spanVidasJugador = document.getElementById('vidas-jugador')
+    let spanVidasEnemigo = document.getElementById('vidas-enemigo')
 
 
 if (ataqueEnemigo == ataqueJugador) {
@@ -150,16 +173,40 @@ if (ataqueEnemigo == ataqueJugador) {
     
     } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA' || ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO' || ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA' ) { 
     crearMensaje("GANASTE");
-    
+
+    //MENSAJE VIDAS ENEMIGO
+    vidasEnemigo--
+    spanVidasEnemigo.innerHTML = vidasEnemigo
+
     }  else {
     crearMensaje("PERDISTE");
+
+//MENSAJE VIDAS JUGADOR
+    vidasJugador--
+    spanVidasJugador.innerHTML = vidasJugador
+    
     }
+
+//REVISAR VIDAS
+revisarVidas()
+
+
+
 }
+//FUNCIÓN DE REVISAR VIDAS
+function revisarVidas() {
+    if (vidasEnemigo == 0) {
+        crearMensajeFinal('Felicitaciones, Ganaste')
+    }else if(vidasJugador == 0) {
+        crearMensajeFinal('Lo sentimos, Perdiste')
+    } 
+}
+
 //IMPORTANTE ------- CREAMOS LA FUNCIÓN CREAR MENSAJES
 //PARA INSERTAR UN TEXTO EN HTML CREADO MEDIABTE document.createElement,  
 //INSERTADO POR appendChild Y DIRIGIDO POR getElementById
 
-function crearMensaje(resultado) {
+function crearMensaje (resultado) {
     let secctionMensajes = document.getElementById('mensajes')
 
 
@@ -170,6 +217,35 @@ function crearMensaje(resultado) {
     
 }
 
+//FUNCION DE MENSAJE FINAL
+function crearMensajeFinal(resultadoFinal) {
+    let secctionMensajes = document.getElementById('mensajes')
+
+
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = resultadoFinal
+    secctionMensajes.appendChild(parrafo)
+
+
+//DESABILITAR BOTONES DE ATAQUES
+//JUSTO DESPUES DE LLEGAR A 0 VIDAS, TANTO JUGADOR COMO ENEMIGO
+
+    let botonFuego = document.getElementById("boton-fuego")
+    botonFuego.disabled = true
+    let botonAgua = document.getElementById('boton-agua')
+    botonAgua.disabled = true
+    let botonTierra = document.getElementById('boton-tierra')
+    botonTierra.disabled = true
+
+    let sectionReiniciar = document.getElementById("reiniciar")
+    sectionReiniciar.style.display = 'block'
+    
+}
+
+//FUNCIÓN REINICIAR
+function reiniciarJuego() {
+    location.reload()
+}
 
 //FUNCION DE ALEATORIEDAD PARA QUE ELIJA MASCOTA POR EL ENEMIGO
 
