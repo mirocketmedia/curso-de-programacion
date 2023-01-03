@@ -61,7 +61,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
     
     let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = 'block'
+    sectionSeleccionarAtaque.style.display = 'flex'
     
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
@@ -85,17 +85,17 @@ function seleccionarMascotaJugador() {
 
 // ----------------- JUGADOR ELIGE MASCOTA -----------------
     if(inputHipodoge.checked) {
-    spanMascotaJugador.innerHTML = 'Hipodoge'
+    spanMascotaJugador.innerHTML = 'Vidas de Hipodoge'
     } else if(inputCapipepo.checked) {
-        spanMascotaJugador.innerHTML = 'Capipepo'  
+        spanMascotaJugador.innerHTML = 'Vidas de Capipepo'  
     }else if(inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = 'Ratigueya'
+        spanMascotaJugador.innerHTML = 'Vidas de Ratigueya'
     }else if(inputLangostelvi.checked) {
-        spanMascotaJugador.innerHTML = 'Langostelvi'
+        spanMascotaJugador.innerHTML = 'Vidas de Langostelvi'
     }else if(inputTucapalma.checked) {
-        spanMascotaJugador.innerHTML = 'Tucapalma'
+        spanMascotaJugador.innerHTML = 'Vidas de Tucapalma'
     }else if(inputPydos.checked) {
-        spanMascotaJugador.innerHTML = 'Pydos'
+        spanMascotaJugador.innerHTML = 'Vidas de Pydos'
     }else {
         alert('DEBES ELEGIR UNA MASCOTA PARA CONTINUAR')
 
@@ -108,17 +108,17 @@ function SeleccionarMascotaEnemigo() {
 let mascotaAleatoria = aleatorio(1,6)
 let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
 if (mascotaAleatoria == 1){
-    spanMascotaEnemigo.innerHTML = 'Hipodogue'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Hipodogue'
 }else if (mascotaAleatoria == 2){
-    spanMascotaEnemigo.innerHTML = 'Capipepo'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Capipepo'
 }else if (mascotaAleatoria == 3){
-    spanMascotaEnemigo.innerHTML = 'Ratigueya'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Ratigueya'
 }else if (mascotaAleatoria == 4){
-    spanMascotaEnemigo.innerHTML = 'Langostelvi'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Langostelvi'
 }else if (mascotaAleatoria == 5){
-    spanMascotaEnemigo.innerHTML = 'Tucapalma'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Tucapalma'
 }else{
-    spanMascotaEnemigo.innerHTML = 'Pydos'
+    spanMascotaEnemigo.innerHTML = 'Vidas de Pydos'
 }
 }
 
@@ -172,7 +172,7 @@ if (ataqueEnemigo == ataqueJugador) {
     crearMensaje("ES EMPATE");
     
     } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA' || ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO' || ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA' ) { 
-    crearMensaje("GANASTE");
+    crearMensaje("GANASTE ");
 
     //MENSAJE VIDAS ENEMIGO
     vidasEnemigo--
@@ -196,9 +196,9 @@ revisarVidas()
 //FUNCIÓN DE REVISAR VIDAS
 function revisarVidas() {
     if (vidasEnemigo == 0) {
-        crearMensajeFinal('Felicitaciones, Ganaste')
+        crearMensajeFinal('Ganaste la Batalla, Felicitaciones')
     }else if(vidasJugador == 0) {
-        crearMensajeFinal('Lo sentimos, Perdiste')
+        crearMensajeFinal('Perdiste la Batalla, lo sentimos')
     } 
 }
 
@@ -207,24 +207,35 @@ function revisarVidas() {
 //INSERTADO POR appendChild Y DIRIGIDO POR getElementById
 
 function crearMensaje (resultado) {
-    let secctionMensajes = document.getElementById('mensajes')
+    let secctionMensajes = document.getElementById('resultado')
+    let ataquesDelJugador = document.getElementById('ataques-del-jugador')
+    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+
+    let notificacion = document.createElement('p')
+    let nuevoAtaqueDelJugador = document.createElement('p')
+    let nuevoAtaqueDelEnemigo = document.createElement('p')
+
+    secctionMensajes.innerHTML = resultado
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ' y la mascota de tu enemigo atacó con ' + ataqueEnemigo + ': ' + resultado
 
-    secctionMensajes.appendChild(parrafo)
+    // let parrafo = document.createElement('p')
+    // parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ' y la mascota de tu enemigo atacó con ' + ataqueEnemigo + ': ' + resultado
+
     
 }
 
 //FUNCION DE MENSAJE FINAL
 function crearMensajeFinal(resultadoFinal) {
-    let secctionMensajes = document.getElementById('mensajes')
+    let secctionMensajes = document.getElementById('resultado')
 
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = resultadoFinal
-    secctionMensajes.appendChild(parrafo)
+    secctionMensajes.innerHTML = resultadoFinal
 
 
 //DESABILITAR BOTONES DE ATAQUES
@@ -252,6 +263,9 @@ function reiniciarJuego() {
 function aleatorio (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+
+
 
 
 
